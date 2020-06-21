@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <h1>
+        Hello World!!!!!!!<br />
+        <button id='token' onclick="getToken()">Generate Token</button><br/>
+        Token: <span id="token_val"></span>
+        <button id='cookie' onclick="getCookie()">Get Cookie</button>
+        Cookie Token: <span id="cookies_val"></span>
+    </h1>
+    <script>
+        function getToken() {
+            console.log('button clicked');
+            var theUrl = 'http://localhost:8125/token'
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                    console.log(xmlHttp.responseText);
+                    document.getElementById("token_val").innerText = xmlHttp.responseText
+            }
+            xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+            xmlHttp.send(null);
+        }
+        function getCookie() {
+            console.log('button clicked');
+            var theUrl = 'http://localhost:8125/cookie';
+            
+            var xmlHttp = new XMLHttpRequest();
+            //xmlHttp.withCredentials = true;
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                    console.log(xmlHttp.responseText);
+            }
+            xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+            xmlHttp.send(null);
+        }
+    </script>
+</body>
+
+</html>
